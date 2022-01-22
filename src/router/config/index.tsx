@@ -17,15 +17,6 @@ let routes: RouteObject[] = [
         element: <Private />,
         children: [{ index: true, element: <User /> }],
       },
-      //   {
-      //     path: '/courses',
-      //     element: <Courses />,
-      //     children: [
-      //       { index: true, element: <CoursesIndex /> },
-      //       { path: '/courses/:id', element: <Course /> },
-      //     ],
-      //   },
-      //   { path: '*', element: <NoMatch /> },
     ],
   },
 ];
