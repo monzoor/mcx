@@ -1,7 +1,10 @@
 import { FC } from 'react';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 
 import { Page, Input, Button, Form } from '@components';
+import { loginAction } from '@actions/auth';
+import { FIELDS } from '@constants/fields';
 
 interface FormData {
   email: string;
@@ -9,10 +12,12 @@ interface FormData {
 }
 
 const Auth: FC = () => {
+  const navigate = useNavigate();
   const methods = useForm<FormData>({ mode: 'onChange' });
+  const { setError } = methods;
 
   const onSubmit = (data: any) => {
-    console.log('----', data);
+    loginAction(data, setError, navigate);
   };
 
   return (
@@ -37,7 +42,7 @@ const Auth: FC = () => {
                     placeholder="Email Address"
                     required
                     id="email"
-                    name="email"
+                    name={FIELDS.AUTH.EMAIL}
                     validation={{
                       pattern: {
                         value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
@@ -53,7 +58,7 @@ const Auth: FC = () => {
                     placeholder="Password"
                     required
                     id="password"
-                    name="password"
+                    name={FIELDS.AUTH.PASSWORD}
                   />
 
                   <div>

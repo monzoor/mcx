@@ -1,11 +1,20 @@
-import { FC } from "react";
-import Generic from "./Generic";
+import { FC, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const isLoggedIn = true;
+import { PAGES } from '@constants/pages';
+import { isLoggedIn } from '@utils';
+
+import Generic from './Generic';
+
 const Private: FC = ({ children }) => {
-  if (!isLoggedIn) {
-    return <p>Not logged in</p>;
-  }
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!isLoggedIn()) {
+      navigate(PAGES.HOME);
+    }
+  }, [navigate]);
+
   return <Generic>{children}</Generic>;
 };
 
