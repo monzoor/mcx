@@ -34,11 +34,6 @@ const Fields: FC<InputFields> = forwardRef(
       { 'h-36': component === 'textarea' },
       { 'h-10': component !== 'textarea' },
     );
-    // const wrapperClass = classNames('relative', {
-    //   'mt-0': noMarginTop,
-    //   'mt-6': !noMarginTop,
-    // });
-
     const validations = required
       ? {
           required: 'This is required',

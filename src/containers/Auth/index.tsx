@@ -3,8 +3,13 @@ import { useForm } from 'react-hook-form';
 
 import { Page, Input, Button, Form } from '@components';
 
+interface FormData {
+  email: string;
+  password: string;
+}
+
 const Auth: FC = () => {
-  const methods = useForm({ mode: 'onChange' });
+  const methods = useForm<FormData>({ mode: 'onChange' });
 
   const onSubmit = (data: any) => {
     console.log('----', data);
