@@ -1,21 +1,31 @@
+import classNames from 'classnames';
 import { FC } from 'react';
 
 interface ButtonTypes {
   [others: string]: any;
 }
 
-const Button: FC<ButtonTypes> = (props) => {
-  const { text, type } = props;
+export const BUTTON_VARIANT = {
+  BLUE: 'bg-blue text-white',
+  LIGHT: 'bg-gray-light text-dark',
+  DARK: 'bg-gray-dark text-white',
+};
+export const Button: FC<ButtonTypes> = (props) => {
+  const { text, type, className, small, variant } = props;
+  const buttonSize = small ? 'px-5 py-2 text-sm' : 'py-3 px-5 text-base';
+  const buttonStyles = classNames(
+    'border border-transparent focus:outline-none',
+    buttonSize,
+    variant,
+    {
+      [className]: classNames,
+    },
+  );
   return (
     <>
-      <button
-        type={type || 'button'}
-        className="mt-5 flex justify-center mx-auto py-3 px-5 border border-transparent font-medium text-white bg-blue hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-      >
+      <button {...props} type={type || 'button'} className={buttonStyles}>
         {text}
       </button>
     </>
   );
 };
-
-export default Button;

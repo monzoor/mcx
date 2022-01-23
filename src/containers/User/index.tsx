@@ -1,13 +1,14 @@
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 
 import { Page } from '@components';
 
 import './test.css';
+import { getUsersActions } from '@actions/users';
 
 function ComponentForLoop(users: number) {
   const rows = [];
   const degree = 380 / users;
-  for (let i = 1; i <= users; i++) {
+  for (let i = 0; i < users; i++) {
     rows.push(
       <li
         key={i}
@@ -26,7 +27,21 @@ function ComponentForLoop(users: number) {
 }
 
 const User: FC = () => {
-  const [users, setUsers] = useState(5);
+  const [users, setUsers] = useState<any>(0);
+
+  useEffect(() => {
+    getUsersActions().then(({ devices }) => {
+      setUsers(devices.length);
+    });
+  }, []);
+
+  useEffect(() => {
+    setInterval(() => {
+      getUsersActions().then(({ devices }) => {
+        setUsers(devices.length);
+      });
+    }, 5000);
+  }, []);
 
   return (
     <Page bg="bg-orange">

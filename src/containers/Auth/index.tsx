@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
-import { Page, Input, Button, Form } from '@components';
+import { Page, Input, Button, Form, BUTTON_VARIANT } from '@components';
 import { loginAction } from '@actions/auth';
 import { FIELDS } from '@constants/fields';
 
@@ -61,8 +61,13 @@ const Auth: FC = () => {
                     name={FIELDS.AUTH.PASSWORD}
                   />
 
-                  <div>
-                    <Button type="submit" text="Log in" />
+                  <div className="mx-auto flex">
+                    <Button
+                      variant={BUTTON_VARIANT.BLUE}
+                      type="submit"
+                      text="Log in"
+                      className="mx-auto"
+                    />
                   </div>
                 </>
               )}
