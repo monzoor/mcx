@@ -1,11 +1,10 @@
 import { FC, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Outlet } from 'react-router-dom';
 
 import { isLoggedIn } from '@utils';
 
-import Generic from './Generic';
 import { PAGES } from '@constants/pages';
-const Public: FC = ({ children }) => {
+const Public: FC = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -14,7 +13,11 @@ const Public: FC = ({ children }) => {
     }
   }, [navigate]);
 
-  return <Generic>{children}</Generic>;
+  return (
+    <>
+      <Outlet />
+    </>
+  );
 };
 
 export default Public;
