@@ -24,8 +24,11 @@ Your app is ready to be deployed!
 ### Project routes
 
 `http://localhost:3000/`
+
 `http://localhost:3000/users` --> auth require
+
 `http://localhost:3000/notify` --> auth require
+
 `http://localhost:3000/404`
 
 ### Used Libraries
