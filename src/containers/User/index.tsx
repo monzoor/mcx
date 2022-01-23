@@ -36,11 +36,14 @@ const User: FC = () => {
   }, []);
 
   useEffect(() => {
-    setInterval(() => {
+    const deviceFetch = setInterval(() => {
       getUsersActions().then(({ devices }) => {
         setUsers(devices.length);
       });
     }, 5000);
+    return () => {
+      clearInterval(deviceFetch);
+    };
   }, []);
 
   return (
