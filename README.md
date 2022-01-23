@@ -6,7 +6,7 @@ Create `.env` file and set the value
 
 ### `REACT_APP_BASE_URL=http://35.201.2.209:8000/`
 
-The run
+Then run
 
 ### `npm start`
 
