@@ -8,6 +8,7 @@ import Private from '@components/Layouts/Private';
 import Auth from '@containers/Auth';
 import User from '@containers/User';
 import Notify from '@containers/Notify';
+import NotFound from '@containers/NotFound';
 
 let routes: RouteObject[] = [
   {
@@ -25,6 +26,7 @@ let routes: RouteObject[] = [
     element: <Private />,
     children: [{ index: true, element: <Notify /> }],
   },
+  { path: '*', element: <NotFound /> },
 ];
 
 export default routes;

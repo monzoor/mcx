@@ -4,8 +4,12 @@ import { URLS } from '@constants/urls';
 import api, { setAuthorization } from '@helpers/api';
 import { clearLS } from '@utils/storage';
 
-export const loginAction = (data: TFormData, setError: any, navigate: any) => {
-  api
+export const loginAction = async (
+  data: TFormData,
+  setError: any,
+  navigate: any,
+) => {
+  await api
     .post(URLS.LOGIN, data)
     .then((data) => {
       setAuthorization(data?.data);

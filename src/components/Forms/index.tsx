@@ -31,9 +31,11 @@ const Fields: FC<InputFields> = forwardRef(
     const errors = props.formState?.errors;
 
     const inputClassNames = classNames(
-      'appearance-none rounded relative block w-full pl-10 p-3 bg-gray-light placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm',
+      'appearance-none rounded relative block w-full p-3 bg-gray-light placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm',
       { 'h-36': component === 'textarea' },
       { 'h-10': component !== 'textarea' },
+      { 'pl-10': icon },
+      { 'pl-3': !icon },
     );
     const validations = required
       ? {
@@ -49,9 +51,12 @@ const Fields: FC<InputFields> = forwardRef(
           {required && <sup className="text-red-500">*</sup>}
         </label>
         <div className="mt-1 relative rounded-md shadow-sm">
-          <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-            <img src={icon} className="h-5 w-5 z-50" alt="" />
-          </div>
+          {icon && (
+            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+              <img src={icon} className="h-5 w-5 z-50" alt="" />
+            </div>
+          )}
+
           <Wrapper
             id={id}
             type={type}

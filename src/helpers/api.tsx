@@ -1,7 +1,7 @@
 import axios from 'axios';
-import { hasError, performResponseData } from '@utils';
+import { performResponseData } from '@utils';
 import { clearLS, setLSValue, getLSValue } from '@utils/storage';
-import { BASE_URL, API_ERRORS, LS_KEYS } from '@constants';
+import { BASE_URL, LS_KEYS } from '@constants';
 
 import { PAGES } from '@constants/pages';
 
@@ -31,23 +31,13 @@ const onResponseError = (error: any) => {
   if ((!response?.status && !response?.data) || response?.status === 404) {
     window.location.assign(PAGES.NOT_FOUND);
   }
-  const { status, data } = response;
+  const { status } = response;
 
   if (status < 400 || status > 499) {
     return Promise.reject(error);
   }
 
-  const authError =
-    hasError(API_ERRORS.SESSION_EXPIRED, 'base', data) ||
-    hasError(API_ERRORS.REVOKED, 'base', data) ||
-    hasError(API_ERRORS.DELETED, 'base', data) ||
-    hasError(API_ERRORS.SUSPENDED, 'base', data) ||
-    hasError(API_ERRORS.LOCKED, 'base', data);
-
-  //   const url = config ? config.url : '';
-  //   const isAuthUrl = url.endsWith(URLS.LOGIN);
-
-  if ((status === 401 || status === 403) && authError) {
+  if (status === 401 || status === 403) {
     clearAuthorization();
     window.location.assign(PAGES.HOME);
     return;
