@@ -1,5 +1,5 @@
 import { FC, useEffect } from 'react';
-import { useNavigate, Outlet } from 'react-router-dom';
+import { useNavigate, Outlet, useLocation } from 'react-router-dom';
 
 import { PAGES } from '@constants/pages';
 import { isLoggedIn } from '@utils';
@@ -9,6 +9,7 @@ import { logoutAction } from '@actions/auth';
 
 const Private: FC = () => {
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     if (!isLoggedIn()) {
@@ -29,8 +30,9 @@ const Private: FC = () => {
           <Button
             variant={BUTTON_VARIANT.LIGHT}
             className="mr-3"
-            text="NOTIFY"
+            text={location.pathname === PAGES.NOTIFY ? 'DEVICES' : 'NOTIFY'}
             small="true"
+            to={location.pathname === PAGES.NOTIFY ? PAGES.USERS : PAGES.NOTIFY}
           />
           <Button
             onClick={() => logout()}

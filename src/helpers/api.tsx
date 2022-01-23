@@ -58,9 +58,9 @@ const onResponseError = (error: any) => {
 
 api.interceptors.response.use(onResponseSuccess, onResponseError);
 
-export const AUTH_HEADER = 'authorization';
+export const AUTH_HEADER = 'Authorization';
 export const setAuthorization = (token: string, addToStorage = true) => {
-  api.defaults.headers.common[AUTH_HEADER] = token;
+  api.defaults.headers.common[AUTH_HEADER] = token.replace('', 'Bearer ');
 
   if (addToStorage) {
     setLSValue(LS_KEYS.AUTH, token);

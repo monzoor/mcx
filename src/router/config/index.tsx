@@ -7,6 +7,7 @@ import Private from '@components/Layouts/Private';
 
 import Auth from '@containers/Auth';
 import User from '@containers/User';
+import Notify from '@containers/Notify';
 
 let routes: RouteObject[] = [
   {
@@ -18,6 +19,11 @@ let routes: RouteObject[] = [
     path: PAGES.USERS,
     element: <Private />,
     children: [{ index: true, element: <User /> }],
+  },
+  {
+    path: PAGES.NOTIFY,
+    element: <Private />,
+    children: [{ index: true, element: <Notify /> }],
   },
 ];
 

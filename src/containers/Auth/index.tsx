@@ -41,7 +41,7 @@ const Auth: FC = () => {
                     label="Email address"
                     placeholder="Email Address"
                     required
-                    id="email"
+                    id={FIELDS.AUTH.EMAIL}
                     name={FIELDS.AUTH.EMAIL}
                     validation={{
                       pattern: {
@@ -57,7 +57,7 @@ const Auth: FC = () => {
                     label="Password"
                     placeholder="Password"
                     required
-                    id="password"
+                    id={FIELDS.AUTH.PASSWORD}
                     name={FIELDS.AUTH.PASSWORD}
                   />
 
