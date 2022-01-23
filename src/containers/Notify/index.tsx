@@ -8,7 +8,7 @@ import { notifyAction } from '@actions/notify';
 const Notify = () => {
   const [success, setSuccess] = useState<string>('');
 
-  const methods = useForm<FormData>({ mode: 'onChange' });
+  const methods = useForm<TFormData>({ mode: 'onChange' });
   const { setError } = methods;
 
   const onSubmit = (data: any) => {

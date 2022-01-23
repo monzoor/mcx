@@ -1,25 +1,9 @@
 import { FC } from 'react';
-import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
 
-import { Page, Input, Button, Form, BUTTON_VARIANT } from '@components';
-import { loginAction } from '@actions/auth';
-import { FIELDS } from '@constants/fields';
-
-interface FormData {
-  email: string;
-  password: string;
-}
+import { Page } from '@components';
+import AuthForm from './AuthForm';
 
 const Auth: FC = () => {
-  const navigate = useNavigate();
-  const methods = useForm<FormData>({ mode: 'onChange' });
-  const { setError } = methods;
-
-  const onSubmit = (data: any) => {
-    loginAction(data, setError, navigate);
-  };
-
   return (
     <Page bg="bg-gray-dark">
       <div className="flex flex-col justify-center bg-white w-1/2 rounded">
@@ -28,52 +12,7 @@ const Auth: FC = () => {
             Login
           </h2>
         </div>
-
-        <div className="sm:mx-auto sm:w-full sm:max-w-md">
-          <div className="py-8 px-4">
-            <Form className="space-y-1" methods={methods} onSubmit={onSubmit}>
-              {(props: any) => (
-                <>
-                  <Input
-                    {...props}
-                    component="input"
-                    type="email"
-                    label="Email address"
-                    placeholder="Email Address"
-                    required
-                    id={FIELDS.AUTH.EMAIL}
-                    name={FIELDS.AUTH.EMAIL}
-                    validation={{
-                      pattern: {
-                        value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                        message: 'invalid email address',
-                      },
-                    }}
-                  />
-                  <Input
-                    {...props}
-                    component="input"
-                    type="password"
-                    label="Password"
-                    placeholder="Password"
-                    required
-                    id={FIELDS.AUTH.PASSWORD}
-                    name={FIELDS.AUTH.PASSWORD}
-                  />
-
-                  <div className="mx-auto flex">
-                    <Button
-                      variant={BUTTON_VARIANT.BLUE}
-                      type="submit"
-                      text="Log in"
-                      className="mx-auto"
-                    />
-                  </div>
-                </>
-              )}
-            </Form>
-          </div>
-        </div>
+        <AuthForm />
       </div>
     </Page>
   );

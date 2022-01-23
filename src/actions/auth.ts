@@ -4,12 +4,7 @@ import { URLS } from '@constants/urls';
 import api, { setAuthorization } from '@helpers/api';
 import { clearLS } from '@utils/storage';
 
-interface FormData {
-  email: string;
-  password: string;
-}
-
-export const loginAction = (data: FormData, setError: any, navigate: any) => {
+export const loginAction = (data: TFormData, setError: any, navigate: any) => {
   api
     .post(URLS.LOGIN, data)
     .then((data) => {

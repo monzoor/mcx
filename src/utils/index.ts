@@ -36,3 +36,6 @@ export const performResponseData = (data: any) => {
 };
 
 export const isLoggedIn = () => !!getLSValue(LS_KEYS.AUTH);
+
+export const getAssetUrl = (name: string) =>
+  `${process.env.PUBLIC_URL}/assets/${name}`;
